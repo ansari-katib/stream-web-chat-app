@@ -80,7 +80,7 @@ const CallPage = () => {
 
 
   return (
-    <div className='h-screen flex flex-col items-center justify-center'>
+    <div className='h-screen flex flex-colitems-center justify-center'>
       <div className='relative'>
         {client && call ? (
           <StreamVideo client={client}>
