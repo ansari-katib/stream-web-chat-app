@@ -23,9 +23,9 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('backend working fine ✅');
-});
+// app.get('/', (req, res) => {
+//   res.send('backend working fine ✅');
+// });
 
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
