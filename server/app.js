@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: "https://stream-web-chat-app.vercel.app/",
+  origin: "https://stream-web-chat-app.vercel.app",
   credentials: true
 }));
 
