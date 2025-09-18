@@ -7,8 +7,6 @@ import authRouter from './src/routes/authRouter.js';
 import userRouter from './src/routes/userRouter.js';
 import chatRouter from './src/routes/chatRouter.js';
 
-connectDB();
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -32,4 +30,5 @@ app.use("/api/chat", chatRouter);
 
 app.listen(PORT, () => {
   console.log(`Backend is running on port : ${PORT}`);
+  connectDB();
 })
