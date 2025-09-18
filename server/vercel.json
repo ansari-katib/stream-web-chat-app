@@ -1,13 +1,9 @@
 {
-  "installCommand": "npm install --legecy-peer-deps",
+  "installCommand": "npm install --legacy-peer-deps",
   "version": 2,
   "builds": [
     {
       "src": "app.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "src/**/**",
       "use": "@vercel/node"
     }
   ],
@@ -15,10 +11,7 @@
     {
       "src": "/(.*)",
       "dest": "app.js",
-      "methods": ["GET", "POST", "PUT", "DELETE"],
-      "headers": {
-        "Access-Control-Allow-Origin": "*"
-      }
+      "methods": ["GET", "POST", "PUT", "DELETE"]
     }
   ]
 }
