@@ -11,7 +11,7 @@ export const getRecomendedUsers = async (req, res) => {
         const recomendedUsers = await User.find({
             $and: [
                 { _id: { $ne: currentUserId } },   // exclude current user 
-                { $id: { $nin: currentUser.friends } },  // exclude the user's friends 
+                { _id: { $nin: currentUser.friends } },  // exclude the user's friends 
                 { isOnboarded: true }   // only if successfully onboarded
             ]
         })
@@ -53,7 +53,7 @@ export const sendFriendRequest = async (req, res) => {
             return res.status(404).json({ message: "you are already friend with that user" });
         }
 
-        const existingRequest = FriendRequest.findOne({
+        const existingRequest = await FriendRequest.findOne({
             $or: [
                 { sender: myId, recipient: recipientId },
                 { sender: recipientId, recipient: myId },
@@ -93,7 +93,7 @@ export const acceptFriendRequest = async (req, res) => {
         }
 
         friendRequest.status = "accepted";
-        await FriendRequest.save();
+        await friendRequest.save();
 
         // add each reques to other friends array : 
         // $addToSet : add element to an array only if they do not already exist
@@ -125,7 +125,7 @@ export const getFriendRequests = async (req, res) => {
             status: "accepted"
         }).populate("recipient", "fullName profilePic ");
 
-        req.status(200).json({ incomingReqs, acceptedReqs })
+        res.status(200).json({ incomingReqs, acceptedReqs })
 
     } catch (error) {
         console.error("Error in getFriendRequests controller", error.message);
@@ -139,7 +139,7 @@ export const getOutgoingFriendRequests = async (req, res) => {
             sender: req.user.id,
             status: "pending"
         }).populate("recipient", "fullName profilePic nativeLanguage learningLanguage");
-    
+
         res.status(200).json(outgoingFriendReqs);
     } catch (error) {
         console.error("Error in getOutgoingFriendRequests controller", error.message);
