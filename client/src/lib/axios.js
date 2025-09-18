@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
-    baseURL: `https://stream-web-chat-app-rbz3.vercel.app/api`,
+    baseURL: `${import.meta.env.VITE_SERVER_API}/api`,
     withCredentials: true,
 })
 
