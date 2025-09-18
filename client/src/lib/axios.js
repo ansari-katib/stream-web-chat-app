@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
-    baseURL: `http://localhost:5005/api`,
-    withCredentials: true,   
+    baseURL: `https://stream-web-chat-app-rbz3.vercel.app/api`,
+    withCredentials: true,
 })
 
 
@@ -26,7 +26,7 @@ export const _routes = {
     user: {
         get_user: `${type.users}/`,
         get_friends: `${type.users}/friends`,
-        post_friend_request: `${type.users}/friend-request`,      
+        post_friend_request: `${type.users}/friend-request`,
         put_friend_request: `${type.users}/friend-request`,       // this api for when user accept the request  = /:id/accept
         get_friend_request: `${type.users}/friend-requests`,
         get_outgoing_friend_request: `${type.users}/outgoing-friend-requests`,
