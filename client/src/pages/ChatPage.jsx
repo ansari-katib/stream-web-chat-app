@@ -16,6 +16,7 @@ import {
 import { StreamChat } from 'stream-chat';
 import toast from 'react-hot-toast';
 import ChatLoading from '../components/ChatLoading';
+import CallButton from '../components/CallButton';
 
 const STREAM_API_KEY = import.meta.env.VITE_STREAM_API_KEY;
 
@@ -76,12 +77,26 @@ const ChatPage = () => {
 
   if (loading || !chatClient || !channel) return <ChatLoading />
 
+  const handleVideoCall = async () => {
+
+    if (channel) {
+      const callUrl = `${window.location.origin}/call/${channel._id}`;
+
+      channel.sendMessage({
+        text: `I've started a video call. Join me here : ${callUrl}`,
+      })
+
+      toast.success("Video call link send successfully!");
+    }
+
+  }
 
   return (
     <div className="h-[93vh]">
       <Chat client={chatClient}>
         <Channel channel={channel}>
-          <div className='w-full relative'>
+          <div className="w-full relative">
+            <CallButton handleVideoCall={handleVideoCall} />
             <Window>
               <ChannelHeader />
               <MessageList />
@@ -93,6 +108,7 @@ const ChatPage = () => {
       </Chat>
     </div>
   )
+
 }
 
 export default ChatPage
