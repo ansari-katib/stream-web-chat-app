@@ -30,8 +30,6 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/chat", chatRouter);
 
-// app.listen(PORT, () => {
-//   console.log(`Backend is running on port : ${PORT}`);
-// })
-
-export default app 
+app.listen(PORT, () => {
+  console.log(`Backend is running on port : ${PORT}`);
+})
