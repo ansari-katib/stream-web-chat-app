@@ -6,7 +6,6 @@ import cookieParser from 'cookie-parser';
 import authRouter from './src/routes/authRouter.js';
 import userRouter from './src/routes/userRouter.js';
 import chatRouter from './src/routes/chatRouter.js';
-import serverLess from "serverless-http";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -27,10 +26,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/chat", chatRouter);
 
-// app.listen(PORT, () => {
-//   console.log(`Backend is running on port : ${PORT}`);
-//   connectDB();
-// })
-
-
-export default serverLess(app) ;
+app.listen(PORT, () => {
+  console.log(`Backend is running on port : ${PORT}`);
+  connectDB();
+})
