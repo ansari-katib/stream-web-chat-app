@@ -11,9 +11,16 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: "https://stream-web-chat-app.vercel.app",
+  origin: ["https://stream-web-chat-app.vercel.app", "http://localhost:5173"], 
   credentials: true
 }));
+
+// Make sure credentials are passed in responses
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 
 app.use(cookieParser());
 app.use(express.json());
